@@ -7,6 +7,7 @@ NSP (Node Security Platform) for security scan of 3rd party packages
 Express as the WEB server
 localtunnel exposes your localhost as a public IP -- great for showing your in-progress work to the clients
 ES6 with Babel
+ESLint and ESLint Watch
 Mocha for testing
 Chai for asserts
 JSDOM for DOM testing
