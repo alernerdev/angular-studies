@@ -10,7 +10,8 @@ ES6 with Babel
 ESLint and ESLint Watch
 Mocha for testing
 Chai for asserts
-JSDOM for DOM testing
+JSDOM for DOM testing without having a browser
+Cheerio -- like jQuery for the server. Query virtual DOM using jQuery selectors 
 AppVeyor for Continuous Integration
 Chalk for syntax coloring on the backend
 File watching and automatic test running
