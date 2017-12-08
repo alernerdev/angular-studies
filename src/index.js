@@ -1,6 +1,6 @@
 import './index.css';
 
-import { getUsers } from './api/userApi';
+import { getUsers, deleteUser } from './api/userApi';
 
 import numeral from 'numeral';
 
@@ -14,6 +14,7 @@ getUsers().then(function(result) {
     var usersBody = "";
 
     result.forEach(function(user) {
+		// adding deleteUser class here so that it can be searched for afterwards
         usersBody += `<tr>
 		<td><a href="#" data-id="${user.id}" class="deleteUser">Delete</a></td>
 		<td>${user.id}</td>
@@ -22,5 +23,25 @@ getUsers().then(function(result) {
 		<td>${user.email}</td>
 		</tr>`
     });
-    global.document.getElementById('users').innerHTML = usersBody;
+	global.document.getElementById('users').innerHTML = usersBody;
+	
+	HookupDeleteLinks();
 });
+
+function HookupDeleteLinks() {
+	const deleteLinks = global.document.getElementsByClassName('deleteUser');
+
+	// must use Array.from since DOM array is not a true array
+	//(Array.from(deleteLinks)).forEach(function(link) {
+	Array.from(deleteLinks, link => {
+		// attach click handler to each button
+		link.onclick = function(event) {
+			const element = event.target;
+			event.preventDefault();
+			// call to server to delete the user
+			deleteUser(element.attributes["data-id"].value);
+			const row = element.parentNode.parentNode;
+			row.parentNode.removeChild(row);
+		}
+	}); 
+}
