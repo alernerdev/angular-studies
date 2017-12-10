@@ -1,5 +1,5 @@
-/* this is to run the production distribution on the local machine -- 
-in case there are issues when distributing to producton
+/* this is to run the production distribution on the local machine --
+to test out the production distribution before actually distributing it
 */
 
 import express from 'express';
@@ -14,8 +14,10 @@ const port = 3000;
 const app = express();
 
 app.use(compression());
+// static files served out of dist
 app.use(express.static('dist'));
 
+// dist rather than src
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });

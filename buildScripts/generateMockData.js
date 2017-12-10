@@ -3,9 +3,11 @@ It saves you the trouble to point at a possibly non-esistent API while it
 provides realistic random data
 */
 import jsf from 'json-schema-faker'
-import {schema} from './mockDataSchema';
+import { schema } from './mockDataSchema';
 import fs from 'fs';
 import chalk from 'chalk';
+
+/* eslint-disable no-console */
 
 // pass the schema that we defined into the faker
 const json = JSON.stringify(jsf(schema));
