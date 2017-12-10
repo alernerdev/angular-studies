@@ -28,7 +28,7 @@ export default {
         new WebpackMd5Hash(),
 
         // Use CommonsChunkPlugin to create a separate bundle
-        // of vendor libraires so they are cached separately.
+        // of vendor libraries so they are cached separately.
         // the name here must match the entry point name higher up
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
@@ -49,7 +49,8 @@ export default {
                 minifyCSS: true,
                 minifyURLs: true
             },
-            inject: true
+            inject: true,
+            trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
         }),
 
         // eliminate duplicate packages

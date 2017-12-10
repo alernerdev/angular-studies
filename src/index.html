@@ -1,11 +1,28 @@
+<!-- this is a template for index.html.  It uses ejs and htmlWebpackPlugin to generate different
+index.html for dev and production environments
+-->
 <!DOCTYPE html>
 <html>
 
 <head>
+    <!-- does this browser need fetch polyfill ? -->
     <script src="https://cdn.polyfill.io/v2/polyfill.js?features=fetch"></script>
 
     <!-- build process (webpack plugin) will inject bundled js code,
 	no need to include it -->
+
+    <!-- Embedded JS -- I want this error tracking embedded only for production HTML -->
+    <!-- when using webpack.config.dev this element wont exist -->
+    <% if (htmlWebpackPlugin.options.trackJSToken) { %>
+        <!-- BEGIN TRACKJS -->
+        <script type="text/javascript">
+            window._trackJs = {
+                token: '<%=htmlWebpackPlugin.options.trackJSToken%>'
+            };
+        </script>
+        <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+        <!-- END TRACKJS -->
+        <% } %>
 </head>
 
 <body>
