@@ -38,16 +38,16 @@ export default {
         new HtmlWebpackPlugin({
             template: "src/index.html",
             minify: {
-                removeComments: true,
-                collapseWhitespace: true,
+                removeComments: false,
+                collapseWhitespace: false,
                 removeRedundantAttributes: true,
                 useShortDoctype: true,
                 removeEmptyAttributes: true,
                 removeStyleLinkTypeAttributes: true,
                 keepClosingSlash: true,
-                minifyJS: true,
+                minifyJS: false,
                 minifyCSS: true,
-                minifyURLs: true
+                minifyURLs: false
             },
             inject: true,
             trackJSToken: '21981c7d5c924151bc538a66e95cfc22'

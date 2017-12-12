@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import jsdom from 'jsdom/lib/old-api';
-import fs from 'fs';
+//import jsdom from 'jsdom/lib/old-api';
+//import fs from 'fs';
 
 describe('my first test', function() {
     it('should pass', function() {
         expect(true).to.equal(true);
     });
 });
-
+/*
 describe('index.html', function() {
     it('should say hello', function(done) {
         const index = fs.readFileSync('./src/index.html', 'utf-8');
@@ -19,3 +19,4 @@ describe('index.html', function() {
         });
     });
 });
+*/

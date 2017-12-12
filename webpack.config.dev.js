@@ -6,8 +6,7 @@ export default {
     devtool: 'inline-source-map',
     noInfo: false,
     entry: {
-        vendor: path.resolve(__dirname, 'src/vendor'),
-        main: path.resolve(__dirname, 'src/index')
+         main: path.resolve(__dirname, 'src/index')
     },
     target: 'web',
     output: {

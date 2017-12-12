@@ -2,7 +2,7 @@
 index.html for dev and production environments
 -->
 <!DOCTYPE html>
-<html>
+<html ng-app="myStudyApp">
 
 <head>
     <!-- does this browser need fetch polyfill ? -->
@@ -23,11 +23,37 @@ index.html for dev and production environments
         <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
         <!-- END TRACKJS -->
         <% } %>
+
+    <script type="text/javascript">
+        var app = angular.module('myStudyApp', ['ngRoute']);
+        console.log("printing app:");
+        console.log(app);
+        /*
+        app.config(function($routeProvider) {
+            $routeProvider.when("/hello2", {
+                templateUrl: "/views/HelloWorld2.html"
+            });
+        });
+*/
+        //app.controller('myController', function($scope) {  });
+
+    </script>        
 </head>
 
-<body ng-app>
+<body>
+    Main Page
+
+    <div>
+            Simple Angular Hello World with the first controller
+           <input ng-model="name" type="text" placeholder="Enter your name here">
+           <h1>Hello {{name}}</h1>
+        </div>   
+    <!-- <div ng-view></div> -->
+</body>
+<!-- 
+<body ng-app="beterHelloApp">
     <h1>Hello World!</h1>    
     <input ng-model="name" type="text" placeholder="Enter your name here"> Hello {{name}}
 </body>
-
+-->
 </html>
