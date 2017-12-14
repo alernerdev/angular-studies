@@ -4,10 +4,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
+const extractCSS = new ExtractTextPlugin('[name].[contenthash].css');
+
 export default {
-    debug: true,
+    // controls if the source map gets created
     devtool: 'source-map',
-    noInfo: false,
     entry: {
         vendor: path.resolve(__dirname, 'src/vendor'),
         main: path.resolve(__dirname, 'src/index')
@@ -17,11 +18,14 @@ export default {
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
-        filename: '[name].[chunkhash].js'
+        filename: '[name].[chunkhash].js',
+        // use map extension on the css map filenames
+        sourceMapFilename: '[name].[contenthash].css.map'
     },
     plugins: [
         // external CSS file
-        new ExtractTextPlugin('[name].[contenthash].css'),
+        extractCSS,
+        //new ExtractTextPlugin('[name].[contenthash].css'),
 
         // Cache Busting: the filename changes when the file contents change --
         // and as long as the files are the same, they can stay cached
@@ -38,31 +42,42 @@ export default {
         new HtmlWebpackPlugin({
             template: "src/index.html",
             minify: {
-                removeComments: false,
-                collapseWhitespace: false,
+                removeComments: true,
+                collapseWhitespace: true,
                 removeRedundantAttributes: true,
                 useShortDoctype: true,
                 removeEmptyAttributes: true,
                 removeStyleLinkTypeAttributes: true,
                 keepClosingSlash: true,
-                minifyJS: false,
+                minifyJS: true,
                 minifyCSS: true,
-                minifyURLs: false
+                minifyURLs: true
             },
-            inject: true,
+            // I want script references to be injected into the head element
+            inject: 'head',
             trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
         }),
-
-        // eliminate duplicate packages
-        new webpack.optimize.DedupePlugin(),
 
         // minify JS
         new webpack.optimize.UglifyJsPlugin()
     ],
     module: {
-        loaders: [
-            { test: /\.js$/, exclude: /node_modules/, loaders: ['babel'] },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap') }
+        rules: [
+            { test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
+            {
+                test: /\.css$/,
+                use: extractCSS.extract({
+                    use : [
+                        {
+                        loader: 'css-loader',
+                        // sourceMap setting is ignored when devtool is configured higher up
+                        /*
+                        options: {
+                            sourceMap: true,
+                        }*/
+                    }]
+                })
+            }
         ]
     }
 }
