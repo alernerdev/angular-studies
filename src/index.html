@@ -24,24 +24,30 @@ index.html for dev and production environments
 		<script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
 			<!-- END TRACKJS -->
 		<% } %>
+
 </head>
 
 <body>
-	    <script type="text/javascript">
-			var app = angular.module('myStudyApp', []);
+		<script type="text/javascript">
+			var app = angular.module('myStudyApp', ['ngRoute']);
+			app.config(['$routeProvider', function($routeProvider) {
+				$routeProvider.when('/start', {
+					templateUrl:'partials/HelloWorld2.html'
+				});
+			}]);
 
 			app.controller('myController', ['$scope', function($scope) {
 
 			}]);
 		</script>
-
     Main Page
 
     <div ng-controller="myController">
-        Simple Angular Hello World with the first controller
+        Simple MAIN Angular Hello World with the first controller
         <input ng-model="name" type="text" placeholder="Enter your name here">
         <h1>Hello {{name}}</h1>
-    </div>
+	</div>
+	<div ng-view></div>
 </body>
 
 </html>

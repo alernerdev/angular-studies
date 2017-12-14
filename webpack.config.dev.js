@@ -18,7 +18,9 @@ export default {
         new HtmlWebpackPlugin({
             template: "src/index.html",
             // I want script references to be injected into the head element
-            inject: 'head'
+			inject: 'head',
+			chunks: ['vendor', 'main'],
+			chunksSortMode: 'manual'
         }),
     ],
     module: {

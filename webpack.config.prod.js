@@ -25,7 +25,6 @@ export default {
     plugins: [
         // external CSS file
         extractCSS,
-        //new ExtractTextPlugin('[name].[contenthash].css'),
 
         // Cache Busting: the filename changes when the file contents change --
         // and as long as the files are the same, they can stay cached
@@ -43,18 +42,20 @@ export default {
             template: "src/index.html",
             minify: {
                 removeComments: true,
-                collapseWhitespace: true,
+                collapseWhitespace: false,
                 removeRedundantAttributes: true,
                 useShortDoctype: true,
                 removeEmptyAttributes: true,
                 removeStyleLinkTypeAttributes: true,
                 keepClosingSlash: true,
-                minifyJS: true,
+                minifyJS: false,
                 minifyCSS: true,
                 minifyURLs: true
             },
             // I want script references to be injected into the head element
-            inject: 'head',
+			inject: 'head',
+			chunks: ['vendor', 'main'],
+			chunksSortMode: 'manual',
             trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
         }),
 
