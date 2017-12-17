@@ -78,7 +78,13 @@ export default {
                         }*/
                     }]
                 })
-            }
+			},
+			{ test: /\.html$/,
+				include: [
+					path.resolve(__dirname, "src/partials"),
+					],
+				loaders: ["raw-loader"]
+			}
         ]
     }
 }

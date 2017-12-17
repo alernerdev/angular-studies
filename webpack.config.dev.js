@@ -26,7 +26,13 @@ export default {
     module: {
         rules: [
             { test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
-            { test: /\.css$/, loaders: ['style-loader', 'css-loader'] }
+			{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
+			{ test: /\.html$/,
+				include: [
+					path.resolve(__dirname, "src/partials"),
+					],
+				loaders: ["raw-loader"]
+			}
         ]
     }
 }

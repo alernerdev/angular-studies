@@ -4,5 +4,5 @@ This gets built into a separate bundle
 */
 
 /* eslint-disable no-unused-vars */
-import angular from 'angular';
-import ngRoute from 'angular-route';
+//import angular from 'angular';
+//import ngRoute from 'angular-route';
