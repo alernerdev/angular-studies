@@ -1,5 +1,4 @@
 import './index.css';
-//require('ng-cache!./partials/HelloWorld2.html');
 
 /* eslint-disable no-unused-vars */
 
@@ -16,11 +15,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 	});
 	$routeProvider.when('/start', {
 		template: "<h6> my start partial is working ? </h6>"
-		//templateUrl:'partials/HelloWorld2.html'
 	});
 	$routeProvider.when('/finish', {
-		//template: "<h6> my finish partial is working ? </h6>"
-		template: require('./partials/HelloWorld2.html'),
+		template: require('./partials/HelloWorld.html'),
 		controller: 'myController'
 	});
 	$routeProvider.otherwise({
